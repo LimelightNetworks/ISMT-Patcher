@@ -1,12 +1,11 @@
 README
 ------
-This is a project based on JAAD an opensource java aac/mp4 decoder.  The 
-tool that this project creates helps parse ISMT close-captioning files
-for Microsoft Smooth Streaming and verifies that the tfhd box lengths
-match the actual payload within them.  If the payload length doesn't match,
-then the tfhd box length is updated.
+This is a project based on JAAD, an opensource java aac/mp4 decoder.  This 
+tool helps parse ISMT close-captioning files for Microsoft Smooth Streaming 
+and verifies that the tfhd box lengths match the actual payload within them. 
+If the payload length doesn't match, then the tfhd box length is updated.
 
-The tool does not modify the original source file.  Instead it copies
+The tool does not modify the original source file.  Instead, it copies
 the source file to an alternate name postfixed by .patch, and then
 modifies that file.
 
@@ -31,6 +30,3 @@ COMPILING
 An ant build.xml file is included. 
 
 Run "ant create_patcher" to compile and generate the jar.
-
-The resulting file is placed in ismt-patcher/bin/ismt-patcher.jar
-
