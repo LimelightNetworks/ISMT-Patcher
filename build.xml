@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="create_patcher" name="Create ismt-patcher">
+    <!--ANT 1.7 is required                                        -->
+   <property name="debuglevel" value="source,lines,vars"/>
+   <property name="target" value="1.6"/>
+   <property name="source" value="1.6"/>
+   <path id="ismt-patcher.classpath">
+        <pathelement location="bin"/>
+   </path> 
+   <target name="init">
+        <mkdir dir="bin"/>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="src">
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="bin"/>
+    </target>
+    <target depends="clean" name="cleanall"/>
+    <target depends="init" name="build">
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
+            <src path="src"/>
+            <classpath refid="ismt-patcher.classpath"/>
+        </javac>
+    </target>
+    <target depends="build" name="create_patcher">
+        <jar destfile="./ismt-patcher.jar" filesetmanifest="mergewithoutmain">
+            <manifest>
+                <attribute name="Main-Class" value="net.sourceforge.Main"/>
+                <attribute name="Class-Path" value="."/>
+            </manifest>
+            <fileset dir="./bin"/>
+        </jar>
+    </target>
+</project>
